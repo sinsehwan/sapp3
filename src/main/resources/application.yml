@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: sapp
+
+server:
+  port: 8015
