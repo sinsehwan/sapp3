@@ -4,6 +4,7 @@ import com.ll.sapp.answer.Answer;
 import com.ll.sapp.answer.AnswerRepository;
 import com.ll.sapp.question.Question;
 import com.ll.sapp.question.QuestionRepository;
+import com.ll.sapp.question.QuestionService;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ class SappApplicationTests {
 
 	@Autowired
 	private AnswerRepository answerRepository;
+
+	@Autowired
+	private QuestionService questionService;
 
 	@Test
 	void testJpa()
@@ -151,5 +155,15 @@ class SappApplicationTests {
 		assertEquals(1, answerList.size());
 
 		assertEquals("자동 생성", answerList.get(0).getContent());
+	}
+
+	@Test
+	void test3_02() {
+		for (int i = 1; i <= 300; i++)
+		{
+			String subject = String.format("테스트 데이터:[%03d]", i);
+			String content = "내용무";
+			this.questionService.create(subject, content, null);
+		}
 	}
 }
